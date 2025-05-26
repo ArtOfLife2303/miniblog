@@ -1,0 +1,586 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title data-translate-key="pageTitle">Мой Блог Разработчика - Обновления Бота</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    <style>
+        /* Базовые стили для body и шрифтов */
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: #0f172a; /* Темный фон */
+            color: #e2e8f0; /* Светлый текст */
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+            overflow-x: hidden; /* Предотвращаем горизонтальный скролл */
+        }
+
+        /* Анимация появления элементов */
+        .fade-in {
+            opacity: 0;
+            transform: translateY(20px);
+            animation: fadeIn 0.8s ease-out forwards;
+        }
+
+        @keyframes fadeIn {
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        /* Задержки для последовательного появления */
+        .fade-in-1 { animation-delay: 0.1s; }
+        .fade-in-2 { animation-delay: 0.2s; }
+        .fade-in-3 { animation-delay: 0.3s; }
+        .fade-in-4 { animation-delay: 0.4s; }
+        .fade-in-5 { animation-delay: 0.5s; }
+        .fade-in-6 { animation-delay: 0.6s; }
+        .fade-in-7 { animation-delay: 0.7s; }
+        .fade-in-8 { animation-delay: 0.8s; }
+        .fade-in-9 { animation-delay: 0.9s; }
+        .fade-in-10 { animation-delay: 1.0s; }
+
+
+        /* Стили для карточек постов */
+        .post-card {
+            background-color: #1e293b; /* Чуть светлее темный фон */
+            border-radius: 1rem;
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.3);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            overflow: hidden; /* Для изображений внутри */
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between; /* Прижимает футер к низу */
+        }
+
+        .post-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 15px 30px rgba(0, 0, 0, 0.4);
+        }
+
+        /* Стили для кнопок/ссылок */
+        .btn-primary {
+            display: inline-block;
+            padding: 0.75rem 1.5rem;
+            background-color: #0ea5e9; /* Голубой */
+            color: #1a202c; /* Темный текст на голубом */
+            font-weight: 600;
+            border-radius: 0.5rem;
+            transition: background-color 0.3s ease, transform 0.2s ease;
+        }
+
+        .btn-primary:hover {
+            background-color: #38bdf8;
+            transform: translateY(-2px);
+        }
+
+        /* Стили для навигации */
+        .nav-link {
+            padding: 0.5rem 1rem;
+            border-radius: 0.5rem;
+            transition: background-color 0.2s ease;
+        }
+
+        .nav-link:hover {
+            background-color: #334155;
+        }
+
+        /* Стили для изображений в постах */
+        .post-image {
+            width: 100%;
+            height: 200px; /* Фиксированная высота для единообразия */
+            object-fit: cover; /* Обрезка, чтобы изображение заполнило контейнер */
+            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        /* Стили для скроллбара в элементах с overflow-y-auto */
+        ::-webkit-scrollbar {
+            width: 8px;
+        }
+
+        ::-webkit-scrollbar-track {
+            background: #1e293b;
+            border-radius: 10px;
+        }
+
+        ::-webkit-scrollbar-thumb {
+            background: #475569;
+            border-radius: 10px;
+        }
+
+        ::-webkit-scrollbar-thumb:hover {
+            background: #0ea5e9;
+        }
+
+        /* Стили для модального окна */
+        .modal-content {
+            background-color: #1e293b;
+            border-radius: 1rem;
+            box-shadow: 0 15px 30px rgba(0,0,0,0.5);
+            max-width: 768px; /* max-w-2xl */
+            width: 95%;
+            max-height: 90vh;
+            overflow-y: auto;
+            position: relative;
+            padding: 2rem;
+        }
+        .modal-close-button {
+            position: absolute;
+            top: 1rem;
+            right: 1rem;
+            background: none;
+            border: none;
+            color: #cbd5e1;
+            font-size: 2rem;
+            cursor: pointer;
+            transition: color 0.2s ease;
+        }
+        .modal-close-button:hover {
+            color: #f87171;
+        }
+
+        /* Стили для переключателя языков */
+        .lang-switcher-container select {
+            padding: 0.5rem 0.75rem;
+            border-radius: 0.5rem;
+            border: 1px solid rgb(71 85 105 / 0.7);
+            background-color: rgb(30 41 59 / 0.85);
+            backdrop-filter: blur(6px);
+            color: white;
+            font-size: 0.875rem;
+            transition: all 0.2s ease-in-out;
+            cursor: pointer;
+        }
+        .lang-switcher-container select:hover {
+            border-color: #0ea5e9;
+            background-color: rgb(51 65 85 / 0.9);
+        }
+
+        /* Стили для кнопок фильтрации */
+        .filter-button {
+            padding: 0.5rem 1rem;
+            border-radius: 9999px; /* Fully rounded */
+            background-color: #334155;
+            color: #cbd5e1;
+            font-weight: 500;
+            transition: all 0.2s ease;
+            cursor: pointer;
+            border: 1px solid transparent;
+        }
+        .filter-button:hover {
+            background-color: #475569;
+            border-color: #0ea5e9;
+            color: #ffffff;
+        }
+        .filter-button.active {
+            background-color: #0ea5e9;
+            color: #1a202c;
+            font-weight: 600;
+            border-color: #0ea5e9;
+        }
+    </style>
+</head>
+<body class="flex flex-col">
+    <header class="bg-slate-900 shadow-lg py-4 px-6 md:px-12 fixed top-0 left-0 right-0 z-50">
+        <div class="container mx-auto flex justify-between items-center">
+            <h1 class="text-3xl font-extrabold text-sky-400 fade-in-1">
+                <a href="#home" class="hover:text-sky-300 transition-colors">DevLog</a>
+            </h1>
+            <nav class="flex items-center space-x-4">
+                <ul class="flex space-x-4 text-lg font-medium text-slate-300 fade-in-2">
+                    <li><a href="#home" class="nav-link hover:text-white" data-translate-key="navHome">Главная</a></li>
+                    <li><a href="#posts" class="nav-link hover:text-white" data-translate-key="navPosts">Посты</a></li>
+                </ul>
+                <div class="lang-switcher-container fade-in-3">
+                    <label for="languageSelector" class="sr-only" data-translate-key="languageLabel">Язык:</label>
+                    <select id="languageSelector" title="Select Language">
+                        <option value="ru">Русский</option>
+                        <option value="en">English</option>
+                    </select>
+                </div>
+            </nav>
+        </div>
+    </header>
+
+    <main class="container mx-auto mt-24 p-6 flex-grow">
+        <section id="home" class="min-h-[calc(100vh-180px)] flex flex-col justify-center items-center text-center py-16">
+            <h2 class="text-5xl md:text-6xl font-extrabold text-white mb-6 leading-tight fade-in-3" data-translate-key="homeTitle">
+                Привет! Это <span class="text-sky-400">DevLog</span>
+            </h2>
+            <p class="text-xl text-slate-300 max-w-2xl mb-8 fade-in-4" data-translate-key="homeDescription">
+                Это мой личный блог, где я делюсь обновлениями о своих проектах,
+                особенно о боте <a href="https://t.me/ytdlpload_bot" target="_blank" rel="noopener noreferrer" class="text-sky-400 hover:underline">@ytdlpload_bot</a>
+                и сайте <a href="https://youtubemusicdownloader.life" target="_blank" rel="noopener noreferrer" class="text-sky-400 hover:underline">youtubemusicdownloader.life</a>:
+                новые функции, улучшения, технические решения и мысли о разработке.
+            </p>
+            <a href="#posts" class="btn-primary fade-in-5" data-translate-key="homeViewPostsButton">Посмотреть посты</a>
+        </section>
+
+        <section id="posts" class="py-16">
+            <h2 class="text-4xl font-bold text-white mb-8 text-center fade-in-1" data-translate-key="postsHeader">
+                Последние Обновления
+            </h2>
+
+            <div id="post-filters" class="flex flex-wrap justify-center gap-4 mb-12 fade-in-2">
+                <button class="filter-button active" data-filter="all" data-translate-key="filterAll">Все</button>
+                <button class="filter-button" data-filter="бот" data-translate-key="filterBot">Бот</button>
+                <button class="filter-button" data-filter="сайт" data-translate-key="filterWebsite">Сайт</button>
+                <button class="filter-button" data-filter="обновление" data-translate-key="filterUpdate">Обновление</button>
+                <button class="filter-button" data-filter="разработка" data-translate-key="filterDev">Разработка</button>
+                <button class="filter-button" data-filter="ИИ" data-translate-key="filterAI">ИИ</button>
+            </div>
+
+            <div id="posts-grid" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-2 gap-8">
+                <p id="no-posts-message" class="text-slate-400 text-center col-span-full" data-translate-key="noPostsMessage" style="display: none;">Пока нет постов. Добавьте свой первый пост!</p>
+            </div>
+        </section>
+    </main>
+
+    <footer class="bg-slate-900 py-6 px-6 md:px-12 text-center text-slate-400 text-sm">
+        <div class="container mx-auto">
+            <p data-translate-key="footerCopyrightText">&copy; <span id="current-year"></span> DevLog. Все права защищены.</p>
+            <p class="mt-2" data-translate-key="footerMadeForDevs">Создано с ❤️ для разработчиков.</p>
+            <p class="mt-2" data-translate-key="telegramChannelLinkText">Telegram-канал: <a href="https://t.me/ytdlpdeveloper" target="_blank" rel="noopener noreferrer" class="text-sky-400 hover:underline">@ytdlpload_bot</a></p>
+        </div>
+    </footer>
+
+    <script>
+        // Данные для постов
+        const postsData = [
+            {
+                id: 1,
+                title: {
+                    ru: "Важный Анонс: Запуск DevLog!",
+                    en: "Important Announcement: DevLog Launch!"
+                },
+                date: "2025-05-26",
+                excerpt: {
+                    ru: "Всем доброго времени суток. Я только что выложил свой мини-блог вебсайт, на котором я буду вам рассказывать о всех свежих новостях, связанные с моим сайтом и телеграмм ботом.",
+                    en: "Hello everyone. I've just launched my mini-blog website, where I'll be sharing all the latest news related to my website and Telegram bot."
+                },
+                content: {
+                    ru: `
+                        <p class="text-slate-300 mb-4">
+                            Всем доброго времени суток. Я только что выложил свой мини-блог вебсайт, на котором я буду вам рассказывать о всех свежих новостях, связанные с моим сайтом <a href="https://youtubemusicdownloader.life" target="_blank" rel="noopener noreferrer" class="text-sky-400 hover:underline">youtubemusicdownloader.life</a> и телеграмм ботом <a href="https://t.me/ytdlpload_bot" target="_blank" rel="noopener noreferrer" class="text-sky-400 hover:underline">@ytdlpload_bot</a>.
+                        </p>
+                        <p class="text-slate-300 mb-4">
+                            В скором времени, сайт будет улучшаться и становиться еще лучше. Я очень сильно надеюсь, что вам это понравится. Спасибо.
+                        </p>
+                        <p class="text-slate-300">
+                            Также мой телеграмм канал: <a href="https://t.me/ytdlpdeveloper" target="_blank" rel="noopener noreferrer" class="text-sky-400 hover:underline">@ytdlpdeveloper</a>.
+                        </p>
+                        <img src="https://placehold.co/600x200/1a202c/60a5fa?text=DevLog+Launched" alt="Запуск DevLog" class="w-full h-48 object-cover rounded-lg my-4">
+                    `,
+                    en: `
+                        <p class="text-slate-300 mb-4">
+                            Hello everyone. I've just launched my mini-blog website, where I'll be sharing all the latest news related to my website <a href="https://youtubemusicdownloader.life" target="_blank" rel="noopener noreferrer" class="text-sky-400 hover:underline">youtubemusicdownloader.life</a> and Telegram bot <a href="https://t.me/ytdlpload_bot" target="_blank" rel="noopener noreferrer" class="text-sky-400 hover:underline">@ytdlpload_bot</a>.
+                        </p>
+                        <p class="text-slate-300 mb-4">
+                            Soon, the website will be improved and become even better. I truly hope you'll like it. Thank you.
+                        </p>
+                        <p class="text-slate-300">
+                            My Telegram channel: <a href="https://t.me/ytdlpdeveloper" target="_blank" rel="noopener noreferrer" class="text-sky-400 hover:underline">@ytdlpdeveloper</a>.
+                        </p>
+                        <img src="https://placehold.co/600x200/1a202c/60a5fa?text=DevLog+Launched" alt="DevLog Launch" class="w-full h-48 object-cover rounded-lg my-4">
+                    `
+                },
+                thumbnail: "https://placehold.co/600x200/1a202c/60a5fa?text=DevLog+Launch",
+                tags: ["обновление", "сайт", "бот"]
+            },
+            {
+                id: 2,
+                title: {
+                    ru: "Путь Разработчика: От Идеи до Релиза",
+                    en: "Developer's Journey: From Idea to Release"
+                },
+                date: "2025-04-15",
+                excerpt: {
+                    ru: "Разработка бота — это увлекательное путешествие, полное вызовов и открытий. В этом посте я расскажу о процессе создания нашего бота, начиная с первой идеи и заканчивая его релизом.",
+                    en: "Bot development is a fascinating journey full of challenges and discoveries. In this post, I'll share the process of creating our bot, from the initial idea to its release."
+                },
+                content: {
+                    ru: `
+                        <p class="text-slate-300 mb-4">
+                            Каждый проект начинается с идеи. Наш бот не исключение. В начале пути мы столкнулись с множеством вопросов:
+                            какие технологии использовать, как обеспечить масштабируемость, как сделать интерфейс интуитивно понятным?
+                        </p>
+                        <p class="text-slate-300 mb-4">
+                            Мы выбрали Python и Flask для бэкенда, что позволило нам быстро прототипировать и итерировать.
+                            Особое внимание уделили тестированию и обратной связи от первых пользователей, что помогло нам выявить
+                            и исправить множество недочетов до официального релиза.
+                        </p>
+                        <p class="text-slate-300">
+                            Главный урок: разработка — это постоянный процесс обучения и адаптации.
+                            Каждый вызов — это возможность стать лучше.
+                        </p>
+                        <img src="https://placehold.co/600x200/1a202c/7dd3fc?text=Dev+Journey" alt="Путь разработчика" class="w-full h-48 object-cover rounded-lg my-4">
+                    `,
+                    en: `
+                        <p class="text-slate-300 mb-4">
+                            Every project starts with an idea. Our bot is no exception. At the beginning of our journey, we faced many questions:
+                            what technologies to use, how to ensure scalability, how to make the interface intuitive?
+                        </p>
+                        <p class="text-slate-300 mb-4">
+                            We chose Python and Flask for the backend, which allowed us to quickly prototype and iterate.
+                            We paid special attention to testing and feedback from early users, which helped us identify
+                            and fix many shortcomings before the official release.
+                        </p>
+                        <p class="text-slate-300">
+                            The main lesson: development is a continuous process of learning and adaptation.
+                            Every challenge is an opportunity to get better.
+                        </p>
+                        <img src="https://placehold.co/600x200/1a202c/7dd3fc?text=Dev+Journey" alt="Developer's Journey" class="w-full h-48 object-cover rounded-lg my-4">
+                    `
+                },
+                thumbnail: "https://placehold.co/600x200/1a202c/7dd3fc?text=Dev+Journey",
+                tags: ["разработка", "история"]
+            }
+            /* Добавляйте свои посты сюда вручную, следуя формату:
+            {
+                id: ...,
+                title: {
+                    ru: "Название вашего поста на русском",
+                    en: "Your post title in English"
+                },
+                date: "ГГГГ-ММ-ДД",
+                excerpt: {
+                    ru: "Краткое описание на русском",
+                    en: "Short excerpt in English"
+                },
+                content: {
+                    ru: `Содержимое поста на русском (с HTML)`,
+                    en: `Post content in English (with HTML)`
+                },
+                thumbnail: "путь_к_миниатюре_поста.jpg",
+                tags: ["тег1", "тег2"]
+            },
+            */
+        ];
+
+        // Объект с переводами для разных языков
+        const translations = {
+            ru: {
+                pageTitle: "Мой Блог Разработчика - Обновления Бота",
+                navHome: "Главная",
+                navPosts: "Посты",
+                homeTitle: "Привет! Это <span class=\"text-sky-400\">DevLog</span>",
+                homeDescription: "Это мой личный блог, где я делюсь обновлениями о своих проектах, особенно о боте <a href=\"https://t.me/ytdlpload_bot\" target=\"_blank\" rel=\"noopener noreferrer\" class=\"text-sky-400 hover:underline\">@ytdlpload_bot</a> и сайте <a href=\"https://youtubemusicdownloader.life\" target=\"_blank\" rel=\"noopener noreferrer\" class=\"text-sky-400 hover:underline\">youtubemusicdownloader.life</a>: новые функции, улучшения, технические решения и мысли о разработке.",
+                homeViewPostsButton: "Посмотреть посты",
+                postsHeader: "Последние Обновления",
+                filterAll: "Все",
+                filterBot: "Бот",
+                filterWebsite: "Сайт",
+                filterUpdate: "Обновление",
+                filterDev: "Разработка",
+                filterAI: "ИИ",
+                readMoreButton: "Читать далее",
+                tagsLabel: "Теги:",
+                noPostsMessage: "Пока нет постов. Добавьте свой первый пост!",
+                footerCopyrightText: "&copy; <span id=\"current-year-placeholder\"></span> DevLog. Все права защищены.",
+                footerMadeForDevs: "Создано с ❤️ для разработчиков.",
+                telegramChannelLinkText: "Telegram-канал: <a href=\"https://t.me/ytdlpload_bot\" target=\"_blank\" rel=\"noopener noreferrer\" class=\"text-sky-400 hover:underline\">@ytdlpload_bot</a>",
+                languageLabel: "Язык:"
+            },
+            en: {
+                pageTitle: "My Developer Blog - Bot Updates",
+                navHome: "Home",
+                navPosts: "Posts",
+                homeTitle: "Hello! This is <span class=\"text-sky-400\">DevLog</span>",
+                homeDescription: "This is my personal blog where I share updates about my projects, especially about the bot <a href=\"https://t.me/ytdlpload_bot\" target=\"_blank\" rel=\"noopener noreferrer\" class=\"text-sky-400 hover:underline\">@ytdlpload_bot</a> and the website <a href=\"https://youtubemusicdownloader.life\" target=\"_blank\" rel=\"noopener noreferrer\" class=\"text-sky-400 hover:underline\">youtubemusicdownloader.life</a>: new features, improvements, technical solutions, and development thoughts.",
+                homeViewPostsButton: "View Posts",
+                postsHeader: "Latest Updates",
+                filterAll: "All",
+                filterBot: "Bot",
+                filterWebsite: "Website",
+                filterUpdate: "Update",
+                filterDev: "Development",
+                filterAI: "AI",
+                readMoreButton: "Read more",
+                tagsLabel: "Tags:",
+                noPostsMessage: "No posts yet. Add your first post!",
+                footerCopyrightText: "&copy; <span id=\"current-year-placeholder\"></span> DevLog. All rights reserved.",
+                footerMadeForDevs: "Made with GitHub Pages for developers.",
+                telegramChannelLinkText: "Telegram channel: <a href=\"https://t.me/ytdlpdeveloper\" target=\"_blank\" rel=\"noopener noreferrer\" class=\"text-sky-400 hover:underline\">@ytdlpload_bot</a>",
+                languageLabel: "Language:"
+            }
+        };
+
+        // Переменная для отслеживания текущего языка
+        let currentLanguage = 'ru'; // По умолчанию русский
+
+        // Функция для форматирования даты
+        function formatDate(dateString) {
+            const options = { year: 'numeric', month: 'long', day: 'numeric' };
+            // Используем currentLanguage для локализации даты
+            return new Date(dateString).toLocaleDateString(currentLanguage === 'ru' ? 'ru-RU' : 'en-US', options);
+        }
+
+        // Вспомогательная функция для получения перевода
+        function getTranslation(key, lang = currentLanguage) {
+            return translations[lang] && translations[lang][key] ? translations[lang][key] : (translations.en[key] || key);
+        }
+
+        // Функция для применения переводов на страницу
+        function applyTranslations(lang) {
+            currentLanguage = lang;
+            localStorage.setItem('preferredLanguage', lang); // Сохраняем выбор пользователя
+            document.documentElement.lang = lang; // Устанавливаем атрибут lang для <html>
+
+            // Обновляем текст для всех элементов с data-translate-key
+            document.querySelectorAll('[data-translate-key]').forEach(element => {
+                const key = element.getAttribute('data-translate-key');
+                // Используем innerHTML, чтобы поддерживать HTML-теги внутри перевода (например, для ссылок)
+                element.innerHTML = getTranslation(key, lang);
+            });
+
+            // Обновляем placeholder'ы, если они есть
+            document.querySelectorAll('[data-translate-placeholder]').forEach(element => {
+                const key = element.getAttribute('data-translate-placeholder');
+                element.placeholder = getTranslation(key, lang);
+            });
+
+            // Обновляем футер с годом, так как он может быть частью переведенного текста
+            const currentYearSpan = document.getElementById('current-year');
+            if (currentYearSpan) {
+                currentYearSpan.textContent = new Date().getFullYear();
+            }
+
+            // Перезагружаем посты, чтобы даты отображались на правильном языке и фильтры применились
+            loadPosts();
+            updateFilterButtons();
+        }
+
+        // Функция для загрузки и фильтрации постов в сетку
+        function loadPosts(filterTag = 'all') {
+            const postsGrid = document.getElementById('posts-grid');
+            if (!postsGrid) return; // Если элемента нет, выходим
+
+            postsGrid.innerHTML = ''; // Очищаем сетку перед загрузкой
+
+            const filteredPosts = filterTag === 'all'
+                ? postsData
+                : postsData.filter(post => post.tags && post.tags.includes(filterTag));
+
+            const noPostsMessageElement = document.getElementById('no-posts-message');
+
+            if (filteredPosts.length === 0) {
+                if (noPostsMessageElement) {
+                    postsGrid.appendChild(noPostsMessageElement);
+                    noPostsMessageElement.style.display = 'block'; // Показываем сообщение
+                }
+                return;
+            } else {
+                if (noPostsMessageElement) {
+                    noPostsMessageElement.style.display = 'none'; // Скрываем сообщение, если посты есть
+                }
+            }
+
+
+            filteredPosts.forEach((post, index) => {
+                const postElement = document.createElement('div');
+                // Добавляем класс fade-in с задержкой, чтобы посты появлялись последовательно
+                postElement.className = `post-card fade-in fade-in-${Math.min(index + 1, 10)}`; // Ограничиваем задержку до fade-in-10
+                postElement.innerHTML = `
+                    <img src="${post.thumbnail}" alt="${getTranslation('tagsLabel', currentLanguage)}: ${post.tags.join(', ')}" class="post-image">
+                    <div class="p-6 flex flex-col justify-between flex-grow">
+                        <div>
+                            <h3 class="text-2xl font-semibold text-white mb-2">${post.title[currentLanguage] || post.title.en || post.title.ru}</h3>
+                            <p class="text-slate-400 text-sm mb-3">${formatDate(post.date)}</p>
+                            <p class="text-slate-300 mb-4">${post.excerpt[currentLanguage] || post.excerpt.en || post.excerpt.ru}</p>
+                        </div>
+                        <button onclick="showPostDetails(${post.id})" class="text-sky-400 hover:underline font-medium self-start mt-auto">${getTranslation('readMoreButton')}</button>
+                    </div>
+                `;
+                postsGrid.appendChild(postElement);
+            });
+        }
+
+        // Функция для обновления активного состояния кнопок фильтрации
+        function updateFilterButtons(activeTag = 'all') {
+            document.querySelectorAll('#post-filters .filter-button').forEach(button => {
+                if (button.dataset.filter === activeTag) {
+                    button.classList.add('active');
+                } else {
+                    button.classList.remove('active');
+                }
+            });
+        }
+
+        // Функция для отображения деталей поста (простой модальный диалог)
+        function showPostDetails(postId) {
+            const post = postsData.find(p => p.id === postId);
+            if (!post) return;
+
+            const overlay = document.createElement('div');
+            overlay.className = 'fixed inset-0 bg-black bg-opacity-75 flex items-center justify-center p-4 z-50';
+            overlay.innerHTML = `
+                <div class="modal-content">
+                    <button class="modal-close-button" onclick="this.parentNode.parentNode.remove()">×</button>
+                    <img src="${post.thumbnail}" alt="${getTranslation('tagsLabel', currentLanguage)}: ${post.tags.join(', ')}" class="w-full h-48 object-cover rounded-lg mb-6">
+                    <h2 class="text-3xl font-bold text-sky-400 mb-3">${post.title[currentLanguage] || post.title.en || post.title.ru}</h2>
+                    <p class="text-slate-400 text-sm mb-4">${formatDate(post.date)}</p>
+                    <div class="text-slate-300 leading-relaxed">${post.content[currentLanguage] || post.content.en || post.content.ru}</div>
+                    <div class="mt-6 text-sm text-slate-500">
+                        ${getTranslation('tagsLabel')} ${post.tags.map(tag => `<span class="inline-block bg-slate-700 rounded-full px-3 py-1 text-xs font-semibold text-slate-300 mr-2 mb-2">#${tag}</span>`).join('')}
+                    </div>
+                </div>
+            `;
+            document.body.appendChild(overlay);
+
+            // Закрытие по клику вне модального окна
+            overlay.addEventListener('click', (e) => {
+                if (e.target === overlay) {
+                    overlay.remove();
+                }
+            });
+        }
+
+        // Инициализация при загрузке DOM
+        document.addEventListener('DOMContentLoaded', () => {
+            // Установка текущего года в футере
+            const currentYearSpan = document.getElementById('current-year');
+            if (currentYearSpan) {
+                currentYearSpan.textContent = new Date().getFullYear();
+            }
+
+            // Инициализация переключения языков
+            const languageSelector = document.getElementById('languageSelector');
+            if (languageSelector) {
+                languageSelector.addEventListener('change', (event) => {
+                    applyTranslations(event.target.value);
+                });
+
+                // Проверяем сохраненный язык или язык браузера при загрузке
+                const preferredLang = localStorage.getItem('preferredLanguage');
+                const browserLang = navigator.language.split('-')[0];
+                let initialLang = 'ru'; // По умолчанию русский
+
+                if (preferredLang && translations[preferredLang]) {
+                    initialLang = preferredLang;
+                } else if (translations[browserLang]) {
+                    initialLang = browserLang;
+                }
+                languageSelector.value = initialLang; // Устанавливаем селектор
+                applyTranslations(initialLang); // Применяем переводы
+            } else {
+                // Если селектор языка отсутствует, просто загружаем посты на русском по умолчанию
+                loadPosts();
+            }
+
+            // Прикрепление обработчиков событий к кнопкам фильтрации
+            document.querySelectorAll('#post-filters .filter-button').forEach(button => {
+                button.addEventListener('click', (e) => {
+                    const filterTag = e.target.dataset.filter;
+                    loadPosts(filterTag);
+                    updateFilterButtons(filterTag);
+                });
+            });
+        });
+    </script>
+</body>
+</html>
