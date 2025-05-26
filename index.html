@@ -7,7 +7,7 @@
     <script src="https://cdn.tailwindcss.com"></script>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
     <style>
-        /* Базовые стили для body и шрифтов */
+        
         body {
             font-family: 'Inter', sans-serif;
             background-color: #0f172a; 
@@ -46,16 +46,16 @@
         .fade-in-10 { animation-delay: 1.0s; }
 
 
-        /* Стили для карточек постов */
+        
         .post-card {
-            background-color: #1e293b; /* Чуть светлее темный фон */
+            background-color: #1e293b; 
             border-radius: 1rem;
             box-shadow: 0 10px 20px rgba(0, 0, 0, 0.3);
             transition: transform 0.3s ease, box-shadow 0.3s ease;
-            overflow: hidden; /* Для изображений внутри */
+            overflow: hidden; 
             display: flex;
             flex-direction: column;
-            justify-content: space-between; /* Прижимает футер к низу */
+            justify-content: space-between; 
         }
 
         .post-card:hover {
@@ -63,12 +63,12 @@
             box-shadow: 0 15px 30px rgba(0, 0, 0, 0.4);
         }
 
-        /* Стили для кнопок/ссылок */
+       
         .btn-primary {
             display: inline-block;
             padding: 0.75rem 1.5rem;
-            background-color: #0ea5e9; /* Голубой */
-            color: #1a202c; /* Темный текст на голубом */
+            background-color: #0ea5e9; 
+            color: #1a202c; 
             font-weight: 600;
             border-radius: 0.5rem;
             transition: background-color 0.3s ease, transform 0.2s ease;
@@ -79,7 +79,7 @@
             transform: translateY(-2px);
         }
 
-        /* Стили для навигации */
+        
         .nav-link {
             padding: 0.5rem 1rem;
             border-radius: 0.5rem;
@@ -90,15 +90,15 @@
             background-color: #334155;
         }
 
-        /* Стили для изображений в постах */
+        
         .post-image {
             width: 100%;
-            height: 200px; /* Фиксированная высота для единообразия */
-            object-fit: cover; /* Обрезка, чтобы изображение заполнило контейнер */
+            height: 200px; 
+            object-fit: cover; 
             border-bottom: 1px solid rgba(255, 255, 255, 0.1);
         }
 
-        /* Стили для скроллбара в элементах с overflow-y-auto */
+        
         ::-webkit-scrollbar {
             width: 8px;
         }
@@ -117,12 +117,12 @@
             background: #0ea5e9;
         }
 
-        /* Стили для модального окна */
+       
         .modal-content {
             background-color: #1e293b;
             border-radius: 1rem;
             box-shadow: 0 15px 30px rgba(0,0,0,0.5);
-            max-width: 768px; /* max-w-2xl */
+            max-width: 768px; 
             width: 95%;
             max-height: 90vh;
             overflow-y: auto;
@@ -144,7 +144,7 @@
             color: #f87171;
         }
 
-        /* Стили для переключателя языков */
+       
         .lang-switcher-container select {
             padding: 0.5rem 0.75rem;
             border-radius: 0.5rem;
@@ -161,10 +161,10 @@
             background-color: rgb(51 65 85 / 0.9);
         }
 
-        /* Стили для кнопок фильтрации */
+        
         .filter-button {
             padding: 0.5rem 1rem;
-            border-radius: 9999px; /* Fully rounded */
+            border-radius: 9999px; 
             background-color: #334155;
             color: #cbd5e1;
             font-weight: 500;
@@ -250,7 +250,7 @@
     </footer>
 
     <script>
-        // Данные для постов
+       
         const postsData = [
             {
                 id: 1,
@@ -340,7 +340,7 @@
                 thumbnail: "https://placehold.co/600x200/1a202c/7dd3fc?text=Dev+Journey",
                 tags: ["разработка", "история"]
             }
-            /* Добавляйте свои посты сюда вручную, следуя формату:
+            /* 
             {
                 id: ...,
                 title: {
@@ -362,7 +362,7 @@
             */
         ];
 
-        // Объект с переводами для разных языков
+        
         const translations = {
             ru: {
                 pageTitle: "Мой Блог Разработчика - Обновления Бота",
@@ -410,57 +410,57 @@
             }
         };
 
-        // Переменная для отслеживания текущего языка
-        let currentLanguage = 'ru'; // По умолчанию русский
+       
+        let currentLanguage = 'ru'; 
 
-        // Функция для форматирования даты
+        
         function formatDate(dateString) {
             const options = { year: 'numeric', month: 'long', day: 'numeric' };
-            // Используем currentLanguage для локализации даты
+            
             return new Date(dateString).toLocaleDateString(currentLanguage === 'ru' ? 'ru-RU' : 'en-US', options);
         }
 
-        // Вспомогательная функция для получения перевода
+       
         function getTranslation(key, lang = currentLanguage) {
             return translations[lang] && translations[lang][key] ? translations[lang][key] : (translations.en[key] || key);
         }
 
-        // Функция для применения переводов на страницу
+        
         function applyTranslations(lang) {
             currentLanguage = lang;
-            localStorage.setItem('preferredLanguage', lang); // Сохраняем выбор пользователя
-            document.documentElement.lang = lang; // Устанавливаем атрибут lang для <html>
+            localStorage.setItem('preferredLanguage', lang); 
+            document.documentElement.lang = lang; 
 
-            // Обновляем текст для всех элементов с data-translate-key
+            
             document.querySelectorAll('[data-translate-key]').forEach(element => {
                 const key = element.getAttribute('data-translate-key');
-                // Используем innerHTML, чтобы поддерживать HTML-теги внутри перевода (например, для ссылок)
+               
                 element.innerHTML = getTranslation(key, lang);
             });
 
-            // Обновляем placeholder'ы, если они есть
+            
             document.querySelectorAll('[data-translate-placeholder]').forEach(element => {
                 const key = element.getAttribute('data-translate-placeholder');
                 element.placeholder = getTranslation(key, lang);
             });
 
-            // Обновляем футер с годом, так как он может быть частью переведенного текста
+            
             const currentYearSpan = document.getElementById('current-year');
             if (currentYearSpan) {
                 currentYearSpan.textContent = new Date().getFullYear();
             }
 
-            // Перезагружаем посты, чтобы даты отображались на правильном языке и фильтры применились
+            
             loadPosts();
             updateFilterButtons();
         }
 
-        // Функция для загрузки и фильтрации постов в сетку
+       
         function loadPosts(filterTag = 'all') {
             const postsGrid = document.getElementById('posts-grid');
-            if (!postsGrid) return; // Если элемента нет, выходим
+            if (!postsGrid) return; 
 
-            postsGrid.innerHTML = ''; // Очищаем сетку перед загрузкой
+            postsGrid.innerHTML = ''; 
 
             const filteredPosts = filterTag === 'all'
                 ? postsData
@@ -471,20 +471,20 @@
             if (filteredPosts.length === 0) {
                 if (noPostsMessageElement) {
                     postsGrid.appendChild(noPostsMessageElement);
-                    noPostsMessageElement.style.display = 'block'; // Показываем сообщение
+                    noPostsMessageElement.style.display = 'block'; 
                 }
                 return;
             } else {
                 if (noPostsMessageElement) {
-                    noPostsMessageElement.style.display = 'none'; // Скрываем сообщение, если посты есть
+                    noPostsMessageElement.style.display = 'none'; 
                 }
             }
 
 
             filteredPosts.forEach((post, index) => {
                 const postElement = document.createElement('div');
-                // Добавляем класс fade-in с задержкой, чтобы посты появлялись последовательно
-                postElement.className = `post-card fade-in fade-in-${Math.min(index + 1, 10)}`; // Ограничиваем задержку до fade-in-10
+                
+                postElement.className = `post-card fade-in fade-in-${Math.min(index + 1, 10)}`; 
                 postElement.innerHTML = `
                     <img src="${post.thumbnail}" alt="${getTranslation('tagsLabel', currentLanguage)}: ${post.tags.join(', ')}" class="post-image">
                     <div class="p-6 flex flex-col justify-between flex-grow">
@@ -500,7 +500,7 @@
             });
         }
 
-        // Функция для обновления активного состояния кнопок фильтрации
+        
         function updateFilterButtons(activeTag = 'all') {
             document.querySelectorAll('#post-filters .filter-button').forEach(button => {
                 if (button.dataset.filter === activeTag) {
@@ -511,7 +511,7 @@
             });
         }
 
-        // Функция для отображения деталей поста (простой модальный диалог)
+        
         function showPostDetails(postId) {
             const post = postsData.find(p => p.id === postId);
             if (!post) return;
@@ -532,7 +532,7 @@
             `;
             document.body.appendChild(overlay);
 
-            // Закрытие по клику вне модального окна
+           
             overlay.addEventListener('click', (e) => {
                 if (e.target === overlay) {
                     overlay.remove();
@@ -540,39 +540,39 @@
             });
         }
 
-        // Инициализация при загрузке DOM
+        
         document.addEventListener('DOMContentLoaded', () => {
-            // Установка текущего года в футере
+           
             const currentYearSpan = document.getElementById('current-year');
             if (currentYearSpan) {
                 currentYearSpan.textContent = new Date().getFullYear();
             }
 
-            // Инициализация переключения языков
+            
             const languageSelector = document.getElementById('languageSelector');
             if (languageSelector) {
                 languageSelector.addEventListener('change', (event) => {
                     applyTranslations(event.target.value);
                 });
 
-                // Проверяем сохраненный язык или язык браузера при загрузке
+                
                 const preferredLang = localStorage.getItem('preferredLanguage');
                 const browserLang = navigator.language.split('-')[0];
-                let initialLang = 'ru'; // По умолчанию русский
+                let initialLang = 'ru'; 
 
                 if (preferredLang && translations[preferredLang]) {
                     initialLang = preferredLang;
                 } else if (translations[browserLang]) {
                     initialLang = browserLang;
                 }
-                languageSelector.value = initialLang; // Устанавливаем селектор
-                applyTranslations(initialLang); // Применяем переводы
+                languageSelector.value = initialLang; 
+                applyTranslations(initialLang);
             } else {
-                // Если селектор языка отсутствует, просто загружаем посты на русском по умолчанию
+                
                 loadPosts();
             }
 
-            // Прикрепление обработчиков событий к кнопкам фильтрации
+            
             document.querySelectorAll('#post-filters .filter-button').forEach(button => {
                 button.addEventListener('click', (e) => {
                     const filterTag = e.target.dataset.filter;
