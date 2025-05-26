@@ -16,10 +16,10 @@
             display: flex;
             flex-direction: column;
             justify-content: space-between;
-            overflow-x: hidden; 
+            overflow-x: hidden;
         }
 
-        
+       
         .fade-in {
             opacity: 0;
             transform: translateY(20px);
@@ -63,7 +63,7 @@
             box-shadow: 0 15px 30px rgba(0, 0, 0, 0.4);
         }
 
-       
+        
         .btn-primary {
             display: inline-block;
             padding: 0.75rem 1.5rem;
@@ -117,7 +117,7 @@
             background: #0ea5e9;
         }
 
-       
+        
         .modal-content {
             background-color: #1e293b;
             border-radius: 1rem;
@@ -144,7 +144,7 @@
             color: #f87171;
         }
 
-       
+        
         .lang-switcher-container select {
             padding: 0.5rem 0.75rem;
             border-radius: 0.5rem;
@@ -189,7 +189,7 @@
     <header class="bg-slate-900 shadow-lg py-4 px-6 md:px-12 fixed top-0 left-0 right-0 z-50">
         <div class="container mx-auto flex justify-between items-center">
             <h1 class="text-3xl font-extrabold text-sky-400 fade-in-1">
-                <a href="#home" class="hover:text-sky-300 transition-colors">DevLog</a>
+                <a href="#home" class="hover:text-sky-300 transition-colors">DevVibes</a>
             </h1>
             <nav class="flex items-center space-x-4">
                 <ul class="flex space-x-4 text-lg font-medium text-slate-300 fade-in-2">
@@ -210,7 +210,7 @@
     <main class="container mx-auto mt-24 p-6 flex-grow">
         <section id="home" class="min-h-[calc(100vh-180px)] flex flex-col justify-center items-center text-center py-16">
             <h2 class="text-5xl md:text-6xl font-extrabold text-white mb-6 leading-tight fade-in-3" data-translate-key="homeTitle">
-                Привет! Это <span class="text-sky-400">DevLog</span>
+                Привет! Это <span class="text-sky-400">DevVibes</span>
             </h2>
             <p class="text-xl text-slate-300 max-w-2xl mb-8 fade-in-4" data-translate-key="homeDescription">
                 Это мой личный блог, где я делюсь обновлениями о своих проектах,
@@ -232,7 +232,6 @@
                 <button class="filter-button" data-filter="сайт" data-translate-key="filterWebsite">Сайт</button>
                 <button class="filter-button" data-filter="обновление" data-translate-key="filterUpdate">Обновление</button>
                 <button class="filter-button" data-filter="разработка" data-translate-key="filterDev">Разработка</button>
-                <button class="filter-button" data-filter="ИИ" data-translate-key="filterAI">ИИ</button>
             </div>
 
             <div id="posts-grid" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-2 gap-8">
@@ -243,20 +242,20 @@
 
     <footer class="bg-slate-900 py-6 px-6 md:px-12 text-center text-slate-400 text-sm">
         <div class="container mx-auto">
-            <p data-translate-key="footerCopyrightText">&copy; <span id="current-year"></span> DevLog. Все права защищены.</p>
-            <p class="mt-2" data-translate-key="footerMadeForDevs">Создано с GitHub Pages для разработчиков.</p>
+            <p data-translate-key="footerCopyrightText">&copy; <span id="current-year"></span> DevVibes. Все права защищены.</p>
+            <p class="mt-2" data-translate-key="footerMadeForDevs">Создано с ❤️ для разработчиков.</p>
             <p class="mt-2" data-translate-key="telegramChannelLinkText">Telegram-канал: <a href="https://t.me/ytdlpdeveloper" target="_blank" rel="noopener noreferrer" class="text-sky-400 hover:underline">@ytdlpload_bot</a></p>
         </div>
     </footer>
 
     <script>
-       
+        
         const postsData = [
             {
                 id: 1,
                 title: {
-                    ru: "Важный Анонс: Запуск DevLog!",
-                    en: "Important Announcement: DevLog Launch!"
+                    ru: "Важный Анонс: Запуск DevVibes!",
+                    en: "Important Announcement: DevVibes Launch!"
                 },
                 date: "2025-05-26",
                 excerpt: {
@@ -272,9 +271,9 @@
                             В скором времени, сайт будет улучшаться и становиться еще лучше. Я очень сильно надеюсь, что вам это понравится. Спасибо.
                         </p>
                         <p class="text-slate-300">
-                            Также мой телеграмм канал: <a href="https://t.me/ytdlpdeveloper" target="_blank" rel="noopener noreferrer" class="text-sky-400 hover:underline">@ytdlpdeveloper</a>.
+                            Также мой телеграмм канал: <a href="https://t.me/ytdlpdeveloper" target="_blank" rel="noopener noreferrer" class="text-sky-400 hover:underline">@ytdlpload_bot</a>.
                         </p>
-                        <img src="https://placehold.co/600x200/1a202c/60a5fa?text=DevLog+Launched" alt="Запуск DevLog" class="w-full h-48 object-cover rounded-lg my-4">
+                        <img src="https://placehold.co/600x200/1a202c/60a5fa?text=DevVibes+Launched" alt="Запуск DevVibes" class="w-full h-48 object-cover rounded-lg my-4">
                     `,
                     en: `
                         <p class="text-slate-300 mb-4">
@@ -284,12 +283,12 @@
                             Soon, the website will be improved and become even better. I truly hope you'll like it. Thank you.
                         </p>
                         <p class="text-slate-300">
-                            My Telegram channel: <a href="https://t.me/ytdlpdeveloper" target="_blank" rel="noopener noreferrer" class="text-sky-400 hover:underline">@ytdlpdeveloper</a>.
+                            My Telegram channel: <a href="https://t.me/ytdlpdeveloper" target="_blank" rel="noopener noreferrer" class="text-sky-400 hover:underline">@ytdlpload_bot</a>.
                         </p>
-                        <img src="https://placehold.co/600x200/1a202c/60a5fa?text=DevLog+Launched" alt="DevLog Launch" class="w-full h-48 object-cover rounded-lg my-4">
+                        <img src="https://placehold.co/600x200/1a202c/60a5fa?text=DevVibes+Launched" alt="DevVibes Launch" class="w-full h-48 object-cover rounded-lg my-4">
                     `
                 },
-                thumbnail: "https://placehold.co/600x200/1a202c/60a5fa?text=DevLog+Launch",
+                thumbnail: "https://placehold.co/600x200/1a202c/60a5fa?text=DevVibes+Launch",
                 tags: ["обновление", "сайт", "бот"]
             },
             {
@@ -340,7 +339,7 @@
                 thumbnail: "https://placehold.co/600x200/1a202c/7dd3fc?text=Dev+Journey",
                 tags: ["разработка", "история"]
             }
-            /* 
+            /* Добавляйте свои посты сюда вручную, следуя формату:
             {
                 id: ...,
                 title: {
@@ -354,7 +353,7 @@
                 },
                 content: {
                     ru: `Содержимое поста на русском (с HTML)`,
-                    en: `Post content in English (with HTML)`
+                    en: `Post content in English (с HTML)`
                 },
                 thumbnail: "путь_к_миниатюре_поста.jpg",
                 tags: ["тег1", "тег2"]
@@ -368,7 +367,7 @@
                 pageTitle: "Мой Блог Разработчика - Обновления Бота",
                 navHome: "Главная",
                 navPosts: "Посты",
-                homeTitle: "Привет! Это <span class=\"text-sky-400\">DevLog</span>",
+                homeTitle: "Привет! Это <span class=\"text-sky-400\">DevVibes</span>",
                 homeDescription: "Это мой личный блог, где я делюсь обновлениями о своих проектах, особенно о боте <a href=\"https://t.me/ytdlpload_bot\" target=\"_blank\" rel=\"noopener noreferrer\" class=\"text-sky-400 hover:underline\">@ytdlpload_bot</a> и сайте <a href=\"https://youtubemusicdownloader.life\" target=\"_blank\" rel=\"noopener noreferrer\" class=\"text-sky-400 hover:underline\">youtubemusicdownloader.life</a>: новые функции, улучшения, технические решения и мысли о разработке.",
                 homeViewPostsButton: "Посмотреть посты",
                 postsHeader: "Последние Обновления",
@@ -377,12 +376,11 @@
                 filterWebsite: "Сайт",
                 filterUpdate: "Обновление",
                 filterDev: "Разработка",
-                filterAI: "ИИ",
                 readMoreButton: "Читать далее",
                 tagsLabel: "Теги:",
                 noPostsMessage: "Пока нет постов. Добавьте свой первый пост!",
-                footerCopyrightText: "&copy; <span id=\"current-year-placeholder\"></span> DevLog. Все права защищены.",
-                footerMadeForDevs: "Создано с GitHUb pages для разработчиков.",
+                footerCopyrightText: "&copy; <span id=\"current-year-placeholder\"></span> DevVibes. Все права защищены.",
+                footerMadeForDevs: "Создано с GitHub PAges для разработчиков.",
                 telegramChannelLinkText: "Telegram-канал: <a href=\"https://t.me/ytdlpdeveloper\" target=\"_blank\" rel=\"noopener noreferrer\" class=\"text-sky-400 hover:underline\">@ytdlpdeveloper</a>",
                 languageLabel: "Язык:"
             },
@@ -390,7 +388,7 @@
                 pageTitle: "My Developer Blog - Bot Updates",
                 navHome: "Home",
                 navPosts: "Posts",
-                homeTitle: "Hello! This is <span class=\"text-sky-400\">DevLog</span>",
+                homeTitle: "Hello! This is <span class=\"text-sky-400\">DevVibes</span>",
                 homeDescription: "This is my personal blog where I share updates about my projects, especially about the bot <a href=\"https://t.me/ytdlpload_bot\" target=\"_blank\" rel=\"noopener noreferrer\" class=\"text-sky-400 hover:underline\">@ytdlpload_bot</a> and the website <a href=\"https://youtubemusicdownloader.life\" target=\"_blank\" rel=\"noopener noreferrer\" class=\"text-sky-400 hover:underline\">youtubemusicdownloader.life</a>: new features, improvements, technical solutions, and development thoughts.",
                 homeViewPostsButton: "View Posts",
                 postsHeader: "Latest Updates",
@@ -399,11 +397,10 @@
                 filterWebsite: "Website",
                 filterUpdate: "Update",
                 filterDev: "Development",
-                filterAI: "AI",
                 readMoreButton: "Read more",
                 tagsLabel: "Tags:",
                 noPostsMessage: "No posts yet. Add your first post!",
-                footerCopyrightText: "&copy; <span id=\"current-year-placeholder\"></span> DevLog. All rights reserved.",
+                footerCopyrightText: "&copy; <span id=\"current-year-placeholder\"></span> DevVibes. All rights reserved.",
                 footerMadeForDevs: "Made with GitHub Pages for developers.",
                 telegramChannelLinkText: "Telegram channel: <a href=\"https://t.me/ytdlpdeveloper\" target=\"_blank\" rel=\"noopener noreferrer\" class=\"text-sky-400 hover:underline\">@ytdlpload_bot</a>",
                 languageLabel: "Language:"
@@ -413,14 +410,14 @@
        
         let currentLanguage = 'ru'; 
 
-        
+       
         function formatDate(dateString) {
             const options = { year: 'numeric', month: 'long', day: 'numeric' };
             
             return new Date(dateString).toLocaleDateString(currentLanguage === 'ru' ? 'ru-RU' : 'en-US', options);
         }
 
-       
+        
         function getTranslation(key, lang = currentLanguage) {
             return translations[lang] && translations[lang][key] ? translations[lang][key] : (translations.en[key] || key);
         }
@@ -438,7 +435,7 @@
                 element.innerHTML = getTranslation(key, lang);
             });
 
-            
+            // Обновляем placeholder'ы, если они есть
             document.querySelectorAll('[data-translate-placeholder]').forEach(element => {
                 const key = element.getAttribute('data-translate-placeholder');
                 element.placeholder = getTranslation(key, lang);
@@ -455,7 +452,7 @@
             updateFilterButtons();
         }
 
-       
+        
         function loadPosts(filterTag = 'all') {
             const postsGrid = document.getElementById('posts-grid');
             if (!postsGrid) return; 
@@ -532,7 +529,7 @@
             `;
             document.body.appendChild(overlay);
 
-           
+            
             overlay.addEventListener('click', (e) => {
                 if (e.target === overlay) {
                     overlay.remove();
@@ -542,7 +539,7 @@
 
         
         document.addEventListener('DOMContentLoaded', () => {
-           
+        
             const currentYearSpan = document.getElementById('current-year');
             if (currentYearSpan) {
                 currentYearSpan.textContent = new Date().getFullYear();
@@ -558,7 +555,7 @@
                 
                 const preferredLang = localStorage.getItem('preferredLanguage');
                 const browserLang = navigator.language.split('-')[0];
-                let initialLang = 'ru'; 
+                let initialLang = 'ru';
 
                 if (preferredLang && translations[preferredLang]) {
                     initialLang = preferredLang;
@@ -566,7 +563,7 @@
                     initialLang = browserLang;
                 }
                 languageSelector.value = initialLang; 
-                applyTranslations(initialLang);
+                applyTranslations(initialLang); 
             } else {
                 
                 loadPosts();
