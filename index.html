@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title data-translate-key="pageTitle">Мой Блог Разработчика - Обновления Бота</title>
+    <title data-translate-key="pageTitle">Блог Разработчика - DevVibes</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
     <style>
@@ -16,7 +16,7 @@
             display: flex;
             flex-direction: column;
             justify-content: space-between;
-            overflow-x: hidden; 
+            overflow-x: hidden;
         }
 
         
@@ -33,7 +33,7 @@
             }
         }
 
-        
+        /
         .fade-in-1 { animation-delay: 0.1s; }
         .fade-in-2 { animation-delay: 0.2s; }
         .fade-in-3 { animation-delay: 0.3s; }
@@ -46,7 +46,7 @@
         .fade-in-10 { animation-delay: 1.0s; }
 
 
-       
+        
         .post-card {
             background-color: #1e293b; 
             border-radius: 1rem;
@@ -144,7 +144,7 @@
             color: #f87171;
         }
 
-      
+        
         .lang-switcher-container select {
             padding: 0.5rem 0.75rem;
             border-radius: 0.5rem;
@@ -161,7 +161,7 @@
             background-color: rgb(51 65 85 / 0.9);
         }
 
-        
+       
         .filter-button {
             padding: 0.5rem 1rem;
             border-radius: 9999px; 
@@ -183,13 +183,80 @@
             font-weight: 600;
             border-color: #0ea5e9;
         }
+
+        
+        .night-sky-bg-main {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(135deg, #0b1021, #111827, #1e293b);
+            background-size: 300% 300%;
+            animation: gradientBGMain 30s ease infinite;
+            z-index: -2;
+            overflow: hidden;
+        }
+        @keyframes gradientBGMain {
+            0% { background-position: 0% 50%; }
+            50% { background-position: 100% 50%; }
+            100% { background-position: 0% 50%; }
+        }
+        .star-main {
+            position: absolute;
+            background-color: rgba(255, 255, 255, 0.7); 
+            border-radius: 50%;
+            animation: twinkleMain 3s infinite ease-in-out;
+            box-shadow: 0 0 3px rgba(255, 255, 255, 0.5), 0 0 6px rgba(255, 255, 255, 0.3); 
+        }
+        @keyframes twinkleMain {
+            0%, 100% { opacity: 0.4; transform: scale(0.8); } 
+            50% { opacity: 1; transform: scale(1.1); } 
+            100% { opacity: 0.4; transform: scale(0.8); }
+        }
+        .moon-main {
+            position: absolute;
+            width: 100px;
+            height: 100px;
+            background-color: #f0f8ff;
+            border-radius: 50%;
+            box-shadow: 0 0 25px #f0f8ff, 0 0 40px #add8e6, 0 0 60px #87cefa; 
+            top: 10%;
+            left: 15%;
+            animation: gentleDriftMain 15s ease-in-out infinite alternate, moonPhase 60s linear infinite;
+            opacity: 0;
+            animation-fill-mode: forwards;
+            animation-name: gentleDriftMain, moonPhase, fadeInMoon;
+            animation-duration: 15s, 60s, 2s;
+            animation-timing-function: ease-in-out, linear, ease-out;
+            animation-iteration-count: infinite, infinite, 1;
+            animation-direction: alternate, normal, normal;
+            animation-delay: 0s, 0s, 0.5s;
+        }
+         @keyframes fadeInMoon {
+            to { opacity: 0.85; } 
+        }
+        @keyframes gentleDriftMain {
+            0% { transform: translate(0, 0) scale(1); }
+            50% { transform: translate(20px, 10px) scale(1.05); }
+            100% { transform: translate(0, 0) scale(1); }
+        }
+        @keyframes moonPhase {
+            0% { box-shadow: 0 0 25px #f0f8ff, 0 0 40px #add8e6, 0 0 60px #87cefa, inset -10px 0 15px rgba(0,0,0,0.1); }
+            50% { box-shadow: 0 0 25px #f0f8ff, 0 0 40px #add8e6, 0 0 60px #87cefa, inset 5px 0 15px rgba(0,0,0,0.05); }
+            100% { box-shadow: 0 0 25px #f0f8ff, 0 0 40px #add8e6, 0 0 60px #87cefa, inset -10px 0 15px rgba(0,0,0,0.1); }
+        }
     </style>
 </head>
 <body class="flex flex-col">
+    <div class="night-sky-bg-main">
+        <div class="moon-main"></div>
+    </div>
+
     <header class="bg-slate-900 shadow-lg py-4 px-6 md:px-12 fixed top-0 left-0 right-0 z-50">
         <div class="container mx-auto flex justify-between items-center">
-            <h1 class="text-3xl font-extrabold text-sky-400 fade-in-1">
-                <a href="#home" class="hover:text-sky-300 transition-colors">DevVibes</a>
+            <h1 class="text-3xl font-extrabold text-emerald-400 fade-in-1">
+                <a href="#home" class="hover:text-emerald-300 transition-colors">DevVibes</a>
             </h1>
             <nav class="flex items-center space-x-4">
                 <ul class="flex space-x-4 text-lg font-medium text-slate-300 fade-in-2">
@@ -210,12 +277,12 @@
     <main class="container mx-auto mt-24 p-6 flex-grow">
         <section id="home" class="min-h-[calc(100vh-180px)] flex flex-col justify-center items-center text-center py-16">
             <h2 class="text-5xl md:text-6xl font-extrabold text-white mb-6 leading-tight fade-in-3" data-translate-key="homeTitle">
-                Привет! Это <span class="text-sky-400">DevVibes</span>
+                Привет! Это <span class="text-emerald-400">DevVibes</span>
             </h2>
             <p class="text-xl text-slate-300 max-w-2xl mb-8 fade-in-4" data-translate-key="homeDescription">
                 Это мой личный блог, где я делюсь обновлениями о своих проектах,
-                особенно о боте <a href="https://t.me/ytdlpload_bot" target="_blank" rel="noopener noreferrer" class="text-sky-400 hover:underline">@ytdlpload_bot</a>
-                и сайте <a href="https://youtubemusicdownloader.life" target="_blank" rel="noopener noreferrer" class="text-sky-400 hover:underline">youtubemusicdownloader.life</a>:
+                особенно о боте <a href="https://t.me/ytdlpload_bot" target="_blank" rel="noopener noreferrer" class="text-emerald-400 hover:underline">@ytdlpload_bot</a>
+                и сайте <a href="https://youtubemusicdownloader.life" target="_blank" rel="noopener noreferrer" class="text-emerald-400 hover:underline">youtubemusicdownloader.life</a>:
                 новые функции, улучшения, технические решения и мысли о разработке.
             </p>
             <a href="#posts" class="btn-primary fade-in-5" data-translate-key="homeViewPostsButton">Посмотреть посты</a>
@@ -244,7 +311,7 @@
         <div class="container mx-auto">
             <p data-translate-key="footerCopyrightText">&copy; <span id="current-year"></span> DevVibes. Все права защищены.</p>
             <p class="mt-2" data-translate-key="footerMadeForDevs">Создано с GitHub Pages для разработчиков.</p>
-            <p class="mt-2" data-translate-key="telegramChannelLinkText">Telegram-канал: <a href="https://t.me/ytdlpdeveloper" target="_blank" rel="noopener noreferrer" class="text-sky-400 hover:underline">@ytdlpload_bot</a></p>
+            <p class="mt-2" data-translate-key="telegramChannelLinkText">Telegram-канал: <a href="https://t.me/ytdlpdeveloper" target="_blank" rel="noopener noreferrer" class="text-emerald-400 hover:underline">@ytdlpload_bot</a></p>
         </div>
     </footer>
 
@@ -252,7 +319,55 @@
         
         const postsData = [
             {
-                id: 0, 
+                id: 0,
+                title: {
+                    ru: "Новый Интерфейс DevVibes!",
+                    en: "New DevVibes Interface!"
+                },
+                date: "2025-05-29",
+                excerpt: {
+                    ru: "Мы рады представить совершенно новый, более крутой и анимированный интерфейс DevVibes! Надеемся, вам понравится.",
+                    en: "We are excited to present the completely new, cooler, and more animated DevVibes interface! We hope you like it."
+                },
+                content: {
+                    ru: `
+                        <p class="text-slate-300 mb-4">
+                            Привет всем! Сегодня мы запускаем **полностью обновленный интерфейс** нашего блога DevVibes.
+                            Мы прислушались к вашим пожеланиям и сделали его гораздо более современным,
+                            визуально привлекательным и анимированным.
+                        </p>
+                        <p class="text-slate-300 mb-4">
+                            Теперь сайт выглядит гораздо круче, с плавными переходами, улучшенной типографикой
+                            и, конечно же, с возвращенными звездами и луной на заднем фоне, которые придают ему особую атмосферу.
+                        </p>
+                        <p class="text-slate-300">
+                            Мы очень надеемся, что новый дизайн сделает чтение наших обновлений еще более приятным.
+                            Спасибо, что остаетесь с нами!
+                        </p>
+                        <img src="https://placehold.co/600x200/1a202c/facc15?text=New+DevVibes+UI" alt="Новый интерфейс DevVibes" class="w-full h-48 object-cover rounded-lg my-4">
+                    `,
+                    en: `
+                        <p class="text-slate-300 mb-4">
+                            Hello everyone! Today we are launching a **completely redesigned interface** for our DevVibes blog.
+                            We listened to your wishes and made it much more modern,
+                            visually appealing, and animated.
+                        </p>
+                        <p class="text-slate-300 mb-4">
+                            The site now looks much cooler, with smooth transitions, improved typography,
+                            and, of course, with the returned stars and moon in the background, which give it a special atmosphere.
+                        </p>
+                        <p class="text-slate-300">
+                            We truly hope that the new design will make reading our updates even more enjoyable.
+                            Thank you for staying with us!
+                        </p>
+                        <img src="https://placehold.co/600x200/1a202c/facc15?text=New+DevVibes+UI" alt="New DevVibes UI" class="w-full h-48 object-cover rounded-lg my-4">
+                    `
+                },
+                thumbnail: "https://placehold.co/600x200/1a202c/facc15?text=New+DevVibes+UI",
+                tags: ["обновление", "сайт", "новости"]
+            },
+            {
+                id: 1, 
                 title: {
                     ru: "Новая Функция: Поиск Музыки из YouTube в Боте!",
                     en: "New Feature: YouTube Music Search in Bot!"
@@ -310,121 +425,233 @@
                 tags: ["обновление", "бот", "сайт", "новости"]
             },
             {
-                id: 1,
+                id: 2, 
                 title: {
-                    ru: "Важный Анонс: Теперь мы DevVibes!",
-                    en: "Important Announcement: We are now DevVibes!"
+                    ru: "Советы по Оптимизации Производительности Бота",
+                    en: "Tips for Optimizing Bot Performance"
                 },
-                date: "2025-05-27",
+                date: "2025-03-01",
                 excerpt: {
-                    ru: "Всем привет! Рад сообщить, что мой блог и все связанные проекты теперь называются DevVibes. Это изменение отражает наше стремление к созданию позитивной и энергичной атмосферы в сообществе разработчиков.",
-                    en: "Hello everyone! I'm excited to announce that my blog and all related projects are now called DevVibes. This change reflects our commitment to creating a positive and vibrant atmosphere in the developer community."
+                    ru: "Производительность — ключ к успеху любого бота. В этом посте я поделюсь несколькими практическими советами, которые помогут вам оптимизировать работу вашего бота и обеспечить его стабильность.",
+                    en: "Performance is key to any bot's success. In this post, I'll share some practical tips to help you optimize your bot's performance and ensure its stability."
                 },
                 content: {
                     ru: `
                         <p class="text-slate-300 mb-4">
-                            Всем привет! Рад сообщить, что мой блог и все связанные проекты теперь называются <span class="text-sky-400 font-semibold">DevVibes</span>.
-                            Это изменение отражает наше стремление к созданию позитивной и энергичной атмосферы в сообществе разработчиков.
+                            Медленный бот может отпугнуть пользователей. Вот несколько стратегий, которые мы используем для поддержания высокой производительности:
                         </p>
-                        <p class="text-slate-300 mb-4">
-                            Мы верим, что новое название лучше передает дух наших проектов — делиться хорошими "вайбами" и вдохновлять на новые свершения.
-                            Все функции бота <a href="https://t.me/ytdlpload_bot" target="_blank" rel="noopener noreferrer" class="text-sky-400 hover:underline">@ytdlpload_bot</a>
-                            и сайта <a href="https://youtubemusicdownloader.life" target="_blank" rel="noopener noreferrer" class="text-sky-400 hover:underline">youtubemusicdownloader.life</a>
-                            продолжают работать в обычном режиме.
-                        </p>
+                        <ul class="list-disc list-inside text-slate-300 mb-4 pl-4">
+                            <li><strong>Асинхронное программирование:</strong> Используйте <code>asyncio</code> для обработки множества запросов одновременно.</li>
+                            <li><strong>Оптимизация запросов к API:</strong> Кешируйте данные и минимизируйте количество внешних запросов.</li>
+                            <li><strong>Эффективное использование ресурсов:</strong> Мониторьте потребление памяти и CPU, оптимизируйте алгоритмы.</li>
+                            <li><strong>Масштабирование:</strong> Рассмотрите возможность использования бессерверных функций или контейнеров для автоматического масштабирования.</li>
+                        </ul>
                         <p class="text-slate-300">
-                            Спасибо, что остаетесь с нами!
+                            Помните, что оптимизация — это непрерывный процесс. Регулярно анализируйте логи и метрики, чтобы выявлять узкие места.
                         </p>
-                        <img src="https://placehold.co/600x200/1a202c/facc15?text=DevVibes+New+Name" alt="Новое название DevVibes" class="w-full h-48 object-cover rounded-lg my-4">
+                        <img src="https://placehold.co/600x200/1a202c/38bdf8?text=Optimization+Tips" alt="Советы по оптимизации" class="w-full h-48 object-cover rounded-lg my-4">
                     `,
                     en: `
                         <p class="text-slate-300 mb-4">
-                            Hello everyone. I'm excited to announce that my blog and all related projects are now called <span class="text-sky-400 font-semibold">DevVibes</span>.
-                            This change reflects our commitment to creating a positive and vibrant atmosphere in the developer community.
+                            A slow bot can deter users. Here are some strategies we use to maintain high performance:
                         </p>
-                        <p class="text-slate-300 mb-4">
-                            We believe that the new name better conveys the spirit of our projects — to share good "vibes" and inspire new achievements.
-                            All functions of the bot <a href="https://t.me/ytdlpload_bot" target="_blank" rel="noopener noreferrer" class="text-sky-400 hover:underline">@ytdlpload_bot</a>
-                            and the website <a href="https://youtubemusicdownloader.life" target="_blank" rel="noopener noreferrer" class="text-sky-400 hover:underline">youtubemusicdownloader.life</a>
-                            continue to operate as usual.
-                        </p>
+                        <ul class="list-disc list-inside text-slate-300 mb-4 pl-4">
+                            <li><strong>Asynchronous programming:</strong> Use <code>asyncio</code> to handle multiple requests simultaneously.</li>
+                            <li><strong>API request optimization:</strong> Cache data and minimize external requests.</li>
+                            <li><strong>Efficient resource utilization:</strong> Monitor memory and CPU consumption, optimize algorithms.</li>
+                            <li><strong>Scaling:</strong> Consider using serverless functions or containers for automatic scaling.</li>
+                        </ul>
                         <p class="text-slate-300">
-                            Thank you for staying with us!
+                            Remember that optimization is a continuous process. Regularly analyze logs and metrics to identify bottlenecks.
                         </p>
-                        <img src="https://placehold.co/600x200/1a202c/facc15?text=DevVibes+New+Name" alt="DevVibes New Name" class="w-full h-48 object-cover rounded-lg my-4">
+                        <img src="https://placehold.co/600x200/1a202c/38bdf8?text=Optimization+Tips" alt="Optimization Tips" class="w-full h-48 object-cover rounded-lg my-4">
                     `
                 },
-                thumbnail: "https://placehold.co/600x200/1a202c/facc15?text=DevVibes+New+Name",
-                tags: ["обновление", "сайт", "бот", "новости"]
+                thumbnail: "https://placehold.co/600x200/1a202c/38bdf8?text=Optimization+Tips",
+                tags: ["оптимизация", "производительность", "советы", "разработка"]
             },
             {
-                id: 2, // Обновлен ID
+                id: 3, 
                 title: {
-                    ru: "Путь Разработчика: От Идеи до Релиза",
-                    en: "Developer's Journey: From Idea to Release"
+                    ru: "Открытый Исходный Код: Приглашаем к Сотрудничеству!",
+                    en: "Open Source: We Invite You to Collaborate!"
                 },
-                date: "2025-04-15",
+                date: "2025-01-20",
                 excerpt: {
-                    ru: "Разработка бота — это увлекательное путешествие, полное вызовов и открытий. В этом посте я расскажу о процессе создания нашего бота, начиная с первой идеи и заканчивая его релизом.",
-                    en: "Bot development is a fascinating journey full of challenges and discoveries. In this post, I'll share the process of creating our bot, from the initial idea to its release."
+                    ru: "Мы верим в силу сообщества и открытого исходного кода. Теперь часть нашего бота доступна на GitHub, и мы приглашаем всех желающих присоединиться к разработке.",
+                    en: "We believe in the power of community and open source. Part of our bot is now available on GitHub, and we invite everyone to join the development."
                 },
                 content: {
                     ru: `
                         <p class="text-slate-300 mb-4">
-                            Каждый проект начинается с идеи. Наш бот не исключение. В начале пути мы столкнулись с множеством вопросов:
-                            какие технологии использовать, как обеспечить масштабируемость, как сделать интерфейс интуитивно понятным?
+                            Преимущества открытого исходного кода:
                         </p>
-                        <p class="text-slate-300 mb-4">
-                            Мы выбрали Python и Flask для бэкенда, что позволило нам быстро прототипировать и итерировать.
-                            Особое внимание уделили тестированию и обратной связи от первых пользователей, что помогло нам выявить
-                            и исправить множество недочетов до официального релиза.
-                        </p>
+                        <ul class="list-disc list-inside text-slate-300 mb-4 pl-4">
+                            <li><strong>Прозрачность:</strong> Каждый может видеть, как работает бот.</li>
+                            <li><strong>Совместная разработка:</strong> Возможность для сообщества вносить свой вклад и предлагать улучшения.</li>
+                            <li><strong>Обучение:</strong> Отличная возможность для начинающих разработчиков изучить реальный проект.</li>
+                        </ul>
                         <p class="text-slate-300">
-                            Главный урок: разработка — это постоянный процесс обучения и адаптации.
-                            Каждый вызов — это возможность стать лучше.
+                            Мы будем рады любому вкладу — от исправления ошибок до добавления новых функций.
+                            Присоединяйтесь к нашему репозиторию на GitHub!
                         </p>
-                        <img src="https://placehold.co/600x200/1a202c/7dd3fc?text=Dev+Journey" alt="Путь разработчика" class="w-full h-48 object-cover rounded-lg my-4">
+                        <img src="https://placehold.co/600x200/1a202c/a78bfa?text=Open+Source+Project" alt="Открытый исходный код" class="w-full h-48 object-cover rounded-lg my-4">
                     `,
                     en: `
                         <p class="text-slate-300 mb-4">
-                            Every project starts with an idea. Our bot is no exception. At the beginning of our journey, we faced many questions:
-                            what technologies to use, how to ensure scalability, how to make the interface intuitive?
+                            Benefits of open source:
                         </p>
-                        <p class="text-slate-300 mb-4">
-                            We chose Python and Flask for the backend, which allowed us to quickly prototype and iterate.
-                            We paid special attention to testing and feedback from early users, which helped us identify
-                            and fix many shortcomings before the official release.
-                        </p>
+                        <ul class="list-disc list-inside text-slate-300 mb-4 pl-4">
+                            <li><strong>Transparency:</strong> Everyone can see how the bot works.</li>
+                            <li><strong>Collaborative development:</strong> Opportunity for the community to contribute and suggest improvements.</li>
+                            <li><strong>Learning:</strong> A great opportunity for aspiring developers to study a real project.</li>
+                        </ul>
                         <p class="text-slate-300">
-                            The main lesson: development is a continuous process of learning and adaptation.
-                            Every challenge is an opportunity to get better.
+                            We welcome any contribution — from bug fixes to adding new features.
+                            Join our repository on GitHub!
                         </p>
-                        <img src="https://placehold.co/600x200/1a202c/7dd3fc?text=Dev+Journey" alt="Developer's Journey" class="w-full h-48 object-cover rounded-lg my-4">
+                        <img src="https://placehold.co/600x200/1a202c/a78bfa?text=Open+Source+Project" alt="Open Source Project" class="w-full h-48 object-cover rounded-lg my-4">
                     `
                 },
-                thumbnail: "https://placehold.co/600x200/1a202c/7dd3fc?text=Dev+Journey",
-                tags: ["разработка", "история"]
+                thumbnail: "https://placehold.co/600x200/1a202c/a78bfa?text=Open+Source+Project",
+                tags: ["open_source", "GitHub", "сообщество", "разработка"]
+            },
+            {
+                id: 4, 
+                title: {
+                    ru: "Как Мы Обрабатываем Ошибки: Стратегии и Инструменты",
+                    en: "How We Handle Errors: Strategies and Tools"
+                },
+                date: "2024-12-05",
+                excerpt: {
+                    ru: "Обработка ошибок — это неотъемлемая часть разработки надежного бота. В этом посте я расскажу о наших стратегиях и инструментах для эффективного выявления и устранения багов.",
+                    en: "Error handling is an integral part of developing a reliable bot. In this post, I'll talk about our strategies and tools for effectively identifying and eliminating bugs."
+                },
+                content: {
+                    ru: `
+                        <p class="text-slate-300 mb-4">
+                            Мы используем комплексный подход к обработке ошибок, который включает:
+                        </p>
+                        <ul class="list-disc list-inside text-slate-300 mb-4 pl-4">
+                            <li><strong>Централизованное логирование:</strong> Все логи собираются в одном месте для удобного анализа.</li>
+                            <li><strong>Системы мониторинга:</strong> Автоматические уведомления о критических ошибках и аномалиях.</li>
+                            <li><strong>Автоматизированное тестирование:</strong> Юнит-тесты и интеграционные тесты для предотвращения регрессий.</li>
+                            <li><strong>Постмортемы:</strong> Анализ причин серьезных инцидентов для предотвращения их повторения.</li>
+                        </ul>
+                        <p class="text-slate-300">
+                            Надежная обработка ошибок позволяет нам быстро реагировать на проблемы и поддерживать высокий уровень доступности бота.
+                        </p>
+                        <img src="https://placehold.co/600x200/1a202c/ef4444?text=Error+Debugging" alt="Обработка ошибок" class="w-full h-48 object-cover rounded-lg my-4">
+                    `,
+                    en: `
+                        <p class="text-slate-300 mb-4">
+                            We use a comprehensive approach to error handling, which includes:
+                        </p>
+                        <ul class="list-disc list-inside text-slate-300 mb-4 pl-4">
+                            <li><strong>Centralized logging:</strong> All logs are collected in one place for easy analysis.</li>
+                            <li><strong>Monitoring systems:</strong> Automatic notifications of critical errors and anomalies.</li>
+                            <li><strong>Automated testing:</strong> Unit tests and integration tests to prevent regressions.</li>
+                            <li><strong>Post-mortems:</strong> Analysis of the causes of serious incidents to prevent their recurrence.</li>
+                        </ul>
+                        <p class="text-slate-300">
+                            Reliable error handling allows us to quickly respond to problems and maintain a high level of bot availability.
+                        </p>
+                        <img src="https://placehold.co/600x200/1a202c/ef4444?text=Error+Debugging" alt="Error Debugging" class="w-full h-48 object-cover rounded-lg my-4">
+                    `
+                },
+                thumbnail: "https://placehold.co/600x200/1a202c/ef4444?text=Error+Debugging",
+                tags: ["ошибки", "тестирование", "мониторинг", "разработка"]
+            },
+            {
+                id: 5, 
+                title: {
+                    ru: "Будущее DevVibes: Планы и Видение",
+                    en: "The Future of DevVibes: Plans and Vision"
+                },
+                date: "2025-06-01",
+                excerpt: {
+                    ru: "Что дальше для DevVibes? В этом посте я поделюсь своими планами и видением развития этого блога и связанных с ним проектов.",
+                    en: "What's next for DevVibes? In this post, I'll share my plans and vision for the development of this blog and related projects."
+                },
+                content: {
+                    ru: `
+                        <p class="text-slate-300 mb-4">
+                            Я стремлюсь сделать DevVibes не просто местом для обновлений, но и платформой для обмена знаниями.
+                            В планах:
+                        </p>
+                        <ul class="list-disc list-inside text-slate-300 mb-4 pl-4">
+                            <li><strong>Больше технических статей:</strong> Глубокие погружения в архитектуру бота и сайта.</li>
+                            <li><strong>Интерактивные демонстрации:</strong> Возможность попробовать некоторые функции прямо в браузере.</li>
+                            <li><strong>Раздел Q&A:</strong> Ответы на часто задаваемые вопросы от сообщества.</li>
+                        </ul>
+                        <p class="text-slate-300">
+                            Ваши идеи и предложения всегда приветствуются! Давайте строить будущее DevVibes вместе.
+                        </p>
+                        <img src="https://placehold.co/600x200/1a202c/60a5fa?text=Future+Visions" alt="Будущие планы" class="w-full h-48 object-cover rounded-lg my-4">
+                    `,
+                    en: `
+                        <p class="text-slate-300 mb-4">
+                            I strive to make DevVibes not just a place for updates, but also a platform for knowledge sharing.
+                            Our plans include:
+                        </p>
+                        <ul class="list-disc list-inside text-slate-300 mb-4 pl-4">
+                            <li><strong>More technical articles:</strong> Deep dives into the architecture of the bot and website.</li>
+                            <li><strong>Interactive demos:</strong> The ability to try out some features directly in the browser.</li>
+                            <li><strong>Q&A section:</strong> Answers to frequently asked questions from the community.</li>
+                        </ul>
+                        <p class="text-slate-300">
+                            Your ideas and suggestions are always welcome! Let's build the future of DevVibes together.
+                        </p>
+                        <img src="https://placehold.co/600x200/1a202c/60a5fa?text=Future+Visions" alt="Future Visions" class="w-full h-48 object-cover rounded-lg my-4">
+                    `
+                },
+                thumbnail: "https://placehold.co/600x200/1a202c/60a5fa?text=Future+Visions",
+                tags: ["планы", "будущее", "сообщество"]
+            },
+            {
+                id: 6,
+                title: {
+                    ru: "За кулисами: Инфраструктура Бота",
+                    en: "Behind the Scenes: Bot Infrastructure"
+                },
+                date: "2025-05-10",
+                excerpt: {
+                    ru: "Как работает наш бот под капотом? В этом посте я расскажу об инфраструктуре, которая обеспечивает его стабильность и масштабируемость.",
+                    en: "How does our bot work under the hood? In this post, I'll talk about the infrastructure that ensures its stability and scalability."
+                },
+                content: {
+                    ru: `
+                        <p class="text-slate-300 mb-4">
+                            Наш бот работает на облачной инфраструктуре, используя:
+                        </p>
+                        <ul class="list-disc list-inside text-slate-300 mb-4 pl-4">
+                            <li><strong>Google Cloud Run:</strong> Для бессерверного развертывания и автоматического масштабирования.</li>
+                            <li><strong>Firestore:</strong> Для хранения пользовательских данных и настроек.</li>
+                            <li><strong>Pub/Sub:</strong> Для асинхронной обработки задач и событий.</li>
+                        </ul>
+                        <p class="text-slate-300">
+                            Такой подход позволяет нам сосредоточиться на разработке функций, не беспокоясь об управлении серверами.
+                        </p>
+                        <img src="https://placehold.co/600x200/1a202c/f97316?text=Bot+Infrastructure" alt="Инфраструктура бота" class="w-full h-48 object-cover rounded-lg my-4">
+                    `,
+                    en: `
+                        <p class="text-slate-300 mb-4">
+                            Our bot runs on cloud infrastructure, using:
+                        </p>
+                        <ul class="list-disc list-inside text-slate-300 mb-4 pl-4">
+                            <li><strong>Google Cloud Run:</strong> For serverless deployment and automatic scaling.</li>
+                            <li><strong>Firestore:</strong> For storing user data and settings.</li>
+                            <li><strong>Pub/Sub:</strong> For asynchronous task and event processing.</li>
+                        </ul>
+                        <p class="text-slate-300">
+                            This approach allows us to focus on developing features without worrying about server management.
+                        </p>
+                        <img src="https://placehold.co/600x200/1a202c/f97316?text=Bot+Infrastructure" alt="Bot Infrastructure" class="w-full h-48 object-cover rounded-lg my-4">
+                    `
+                },
+                thumbnail: "https://placehold.co/600x200/1a202c/f97316?text=Bot+Infrastructure",
+                tags: ["инфраструктура", "облако", "Cloud_Run", "разработка"]
             }
-            /* Добавляйте свои посты сюда вручную, следуя формату:
-            {
-                id: ...,
-                title: {
-                    ru: "Название вашего поста на русском",
-                    en: "Your post title in English"
-                },
-                date: "ГГГГ-ММ-ДД",
-                excerpt: {
-                    ru: "Краткое описание на русском",
-                    en: "Short excerpt in English"
-                },
-                content: {
-                    ru: `Содержимое поста на русском (с HTML)`,
-                    en: `Post content in English (с HTML)`
-                },
-                thumbnail: "путь_к_миниатюре_поста.jpg",
-                tags: ["тег1", "тег2"]
-            },
-            */
         ];
 
         
@@ -433,8 +660,8 @@
                 pageTitle: "Блог Разработчика - DevVibes",
                 navHome: "Главная",
                 navPosts: "Посты",
-                homeTitle: "Привет! Это <span class=\"text-sky-400\">DevVibes</span>",
-                homeDescription: "Это мой личный блог, где я делюсь обновлениями о своих проектах, особенно о боте <a href=\"https://t.me/ytdlpload_bot\" target=\"_blank\" rel=\"noopener noreferrer\" class=\"text-sky-400 hover:underline\">@ytdlpload_bot</a> и сайте <a href=\"https://youtubemusicdownloader.life\" target=\"_blank\" rel=\"noopener noreferrer\" class=\"text-sky-400 hover:underline\">youtubemusicdownloader.life</a>: новые функции, улучшения, технические решения и мысли о разработке.",
+                homeTitle: "Привет! Это <span class=\"text-emerald-400\">DevVibes</span>",
+                homeDescription: "Это мой личный блог, где я делюсь обновлениями о своих проектах, особенно о боте <a href=\"https://t.me/ytdlpload_bot\" target=\"_blank\" rel=\"noopener noreferrer\" class=\"text-emerald-400 hover:underline\">@ytdlpload_bot</a> и сайте <a href=\"https://youtubemusicdownloader.life\" target=\"_blank\" rel=\"noopener noreferrer\" class=\"text-emerald-400 hover:underline\">youtubemusicdownloader.life</a>: новые функции, улучшения, технические решения и мысли о разработке.",
                 homeViewPostsButton: "Посмотреть посты",
                 postsHeader: "Последние Обновления",
                 filterAll: "Все",
@@ -445,17 +672,17 @@
                 readMoreButton: "Читать далее",
                 tagsLabel: "Теги:",
                 noPostsMessage: "Пока нет постов. Добавьте свой первый пост!",
-                footerCopyrightText: "© <span id=\"current-year-placeholder\"></span> DevVibes. Все права защищены.",
+                footerCopyrightText: "&copy; <span id=\"current-year\"></span> DevVibes. Все права защищены.",
                 footerMadeForDevs: "Создано с GitHub Pages для разработчиков.",
-                telegramChannelLinkText: "Telegram-канал: <a href=\"https://t.me/ytdlpdeveloper\" target=\"_blank\" rel=\"noopener noreferrer\" class=\"text-sky-400 hover:underline\">@ytdlpload_bot</a>",
+                telegramChannelLinkText: "Telegram-канал: <a href=\"https://t.me/ytdlpdeveloper\" target=\"_blank\" rel=\"noopener noreferrer\" class=\"text-emerald-400 hover:underline\">@ytdlpload_bot</a>",
                 languageLabel: "Язык:"
             },
             en: {
                 pageTitle: "Developer Blog - DevVibes",
                 navHome: "Home",
                 navPosts: "Posts",
-                homeTitle: "Hello! This is <span class=\"text-sky-400\">DevVibes</span>",
-                homeDescription: "This is my personal blog where I share updates about my projects, especially about the bot <a href=\"https://t.me/ytdlpload_bot\" target=\"_blank\" rel=\"noopener noreferrer\" class=\"text-sky-400 hover:underline\">@ytdlpload_bot</a> and the website <a href=\"https://youtubemusicdownloader.life\" target=\"_blank\" rel=\"noopener noreferrer\" class=\"text-sky-400 hover:underline\">youtubemusicdownloader.life</a>: new features, improvements, technical solutions, and development thoughts.",
+                homeTitle: "Hello! This is <span class=\"text-emerald-400\">DevVibes</span>",
+                homeDescription: "This is my personal blog where I share updates about my projects, especially about the bot <a href=\"https://t.me/ytdlpload_bot\" target=\"_blank\" rel=\"noopener noreferrer\" class=\"text-emerald-400 hover:underline\">@ytdlpload_bot</a> and the website <a href=\"https://youtubemusicdownloader.life\" target=\"_blank\" rel=\"noopener noreferrer\" class=\"text-emerald-400 hover:underline\">youtubemusicdownloader.life</a>: new features, improvements, technical solutions, and development thoughts.",
                 homeViewPostsButton: "View Posts",
                 postsHeader: "Latest Updates",
                 filterAll: "All",
@@ -466,9 +693,9 @@
                 readMoreButton: "Read more",
                 tagsLabel: "Tags:",
                 noPostsMessage: "No posts yet. Add your first post!",
-                footerCopyrightText: "&copy; <span id=\"current-year-placeholder\"></span> DevVibes. All rights reserved.",
+                footerCopyrightText: "&copy; <span id=\"current-year\"></span> DevVibes. All rights reserved.",
                 footerMadeForDevs: "Made with GitHub Pages for developers.",
-                telegramChannelLinkText: "Telegram channel: <a href=\"https://t.me/ytdlpdeveloper\" target=\"_blank\" rel=\"noopener noreferrer\" class=\"text-sky-400 hover:underline\">@ytdlpload_bot</a>",
+                telegramChannelLinkText: "Telegram channel: <a href=\"https://t.me/ytdlpdeveloper\" target=\"_blank\" rel=\"noopener noreferrer\" class=\"text-emerald-400 hover:underline\">@ytdlpload_bot</a>",
                 languageLabel: "Language:"
             }
         };
@@ -483,7 +710,7 @@
             return new Date(dateString).toLocaleDateString(currentLanguage === 'ru' ? 'ru-RU' : 'en-US', options);
         }
 
-        
+        // Вспомогательная функция для получения перевода
         function getTranslation(key, lang = currentLanguage) {
             return translations[lang] && translations[lang][key] ? translations[lang][key] : (translations.en[key] || key);
         }
@@ -497,8 +724,7 @@
             
             document.querySelectorAll('[data-translate-key]').forEach(element => {
                 const key = element.getAttribute('data-translate-key');
-               
-                element.innerHTML = getTranslation(key, lang);
+                element.innerHTML = getTranslation(key, lang); 
             });
 
             
@@ -507,7 +733,7 @@
                 element.placeholder = getTranslation(key, lang);
             });
 
-            
+          
             const currentYearSpan = document.getElementById('current-year');
             if (currentYearSpan) {
                 currentYearSpan.textContent = new Date().getFullYear();
@@ -518,7 +744,7 @@
             updateFilterButtons();
         }
 
-       
+        
         function loadPosts(filterTag = 'all') {
             const postsGrid = document.getElementById('posts-grid');
             if (!postsGrid) return; 
@@ -563,7 +789,7 @@
             });
         }
 
-        
+      
         function updateFilterButtons(activeTag = 'all') {
             document.querySelectorAll('#post-filters .filter-button').forEach(button => {
                 if (button.dataset.filter === activeTag) {
@@ -585,7 +811,7 @@
                 <div class="modal-content">
                     <button class="modal-close-button" onclick="this.parentNode.parentNode.remove()">×</button>
                     <img src="${post.thumbnail}" alt="${getTranslation('tagsLabel', currentLanguage)}: ${post.tags.join(', ')}" class="w-full h-48 object-cover rounded-lg mb-6">
-                    <h2 class="text-3xl font-bold text-sky-400 mb-3">${post.title[currentLanguage] || post.title.en || post.title.ru}</h2>
+                    <h2 class="text-3xl font-bold text-emerald-400 mb-3">${post.title[currentLanguage] || post.title.en || post.title.ru}</h2>
                     <p class="text-slate-400 text-sm mb-4">${formatDate(post.date)}</p>
                     <div class="text-slate-300 leading-relaxed">${post.content[currentLanguage] || post.content.en || post.content.ru}</div>
                     <div class="mt-6 text-sm text-slate-500">
@@ -603,7 +829,7 @@
             });
         }
 
-        
+       
         document.addEventListener('DOMContentLoaded', () => {
             
             const currentYearSpan = document.getElementById('current-year');
@@ -611,7 +837,7 @@
                 currentYearSpan.textContent = new Date().getFullYear();
             }
 
-            
+           
             const languageSelector = document.getElementById('languageSelector');
             if (languageSelector) {
                 languageSelector.addEventListener('change', (event) => {
@@ -628,7 +854,7 @@
                 } else if (translations[browserLang]) {
                     initialLang = browserLang;
                 }
-                languageSelector.value = initialLang; 
+                languageSelector.value = initialLang;
                 applyTranslations(initialLang); 
             } else {
                
